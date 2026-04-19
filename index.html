@@ -1,119 +1,794 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"><head>
-<title>Joe Dougherty</title>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-<link href="css/style.css" rel="stylesheet" type="text/css"/>
-<script type="text/javascript" src="scripts/jquery.js"></script>
-<script type="text/javascript" src="scripts/jquery.min.js"></script>
-<script type="text/javascript" src="scripts/cycle.js"></script>
-<script type="text/javascript" src="scripts/jquery.prettyPhoto.js"></script>
-<script type="text/javascript" src="scripts/custom.js"></script>
-<script type="text/javascript" src="scripts/cufon.js"></script>
-<script type="text/javascript" src="scripts/cufon.font.js"></script>
-<script type="text/javascript" src="scripts/vcard.packed.js"></script>
-<!--[if lt IE 8]><script> iexplorer = 1; </script><![endif]--><meta name="title" content="Joe Dougherty" />
-<meta name="description" content="description" />
-<link rel="image_src" type=" image/jpeg" href="images/vcard/profile.jpg" />
-<link rel="stylesheet" href="./css/prettyPhoto.css" type="text/css" media="screen"/>
+<html lang="en-US" xmlns:og="http://opengraphprotocol.org/schema/">
+<head>
+	<!-- HTML Meta Tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Joe Dougherty - JMD.cc</title>
+	<meta name="description" content="Joe Dougherty's Digital File. Find my resume, links, and portfolio here.">
 
+	<!-- Facebook Meta Tags -->
+	<meta property="og:url" content="https://jmd.cc/">
+	<meta property="og:type" content="website">
+	<meta property="og:title" content="Joe Dougherty - JMD.cc">
+	<meta property="og:description" content="Joe Dougherty's Digital File. Find my resume, links, and portfolio here.">
+	<meta property="og:image" content="https://jmd.cc/joe.png">
+
+	<!-- Twitter Meta Tags -->
+	<meta name="twitter:card" content="summary_large_image">
+	<meta property="twitter:domain" content="jmd.cc">
+	<meta property="twitter:url" content="https://jmd.cc/">
+	<meta name="twitter:title" content="Joe Dougherty - JMD.cc">
+	<meta name="twitter:description" content="Joe Dougherty's Digital File. Find my resume, links, and portfolio here.">
+	<meta name="twitter:image" content="https://jmd.cc/joe.png">
+
+	<!-- CSS, JS, Fonts, Favicons, etc... -->
+	<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+	<link rel="manifest" href="site.webmanifest">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;600;700&family=VT323&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #050914;
+            --panel-bg: rgba(10, 16, 30, 0.75);
+            --panel-border: #1e293b;
+            --text-main: #94a3b8;
+            --accent-cyan: #00f0ff;
+            --accent-purple: #b026ff;
+            --accent-red: #ff2a2a;
+            --accent-green: #00ff66;
+            --accent-gold: #ffb700;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: 'Fira Code', monospace;
+            background-image: 
+                radial-gradient(circle at 50% 50%, rgba(0, 240, 255, 0.05) 0%, transparent 60%),
+                linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), 
+                linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+            background-size: 100% 100%, 100% 4px, 3px 100%;
+            min-height: 100vh;
+            margin: 0;
+            overflow-x: hidden;
+        }
+
+        /* Subtle vignette */
+        body::after {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            background: radial-gradient(circle, transparent 50%, rgba(0,0,0,0.8) 100%);
+            pointer-events: none;
+            z-index: 100;
+        }
+
+        .sys-font { font-family: 'VT323', monospace; letter-spacing: 1px; }
+        
+        .panel {
+            background: var(--panel-bg);
+            border: 1px solid var(--panel-border);
+            position: relative;
+            backdrop-filter: blur(4px);
+        }
+
+        /* Tech Corners */
+        .panel::before, .panel::after, 
+        .panel-inner::before, .panel-inner::after {
+            content: '';
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            border: 1px solid var(--accent-cyan);
+            opacity: 0.5;
+            transition: opacity 0.3s, border-color 0.3s;
+        }
+        .panel:hover::before, .panel:hover::after,
+        .panel:hover .panel-inner::before, .panel:hover .panel-inner::after {
+            opacity: 1;
+        }
+
+        .panel::before { top: -1px; left: -1px; border-right: none; border-bottom: none; }
+        .panel::after { top: -1px; right: -1px; border-left: none; border-bottom: none; }
+        .panel-inner { position: absolute; inset: 0; pointer-events: none; }
+        .panel-inner::before { bottom: -1px; left: -1px; border-right: none; border-top: none; }
+        .panel-inner::after { bottom: -1px; right: -1px; border-left: none; border-top: none; }
+
+        /* Glow utilities */
+        .glow-text-cyan { text-shadow: 0 0 8px rgba(0, 240, 255, 0.6); }
+        .glow-text-gold { text-shadow: 0 0 8px rgba(255, 183, 0, 0.6); }
+        .glow-text-red { text-shadow: 0 0 8px rgba(255, 42, 42, 0.6); }
+
+        /* Progress Bars */
+        .bar-bg { background: #0f172a; border: 1px solid #1e293b; box-shadow: inset 0 2px 4px rgba(0,0,0,0.5); }
+        .bar-fill { height: 100%; transition: width 1s ease-in-out; position: relative; overflow: hidden; }
+        .bar-fill::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            animation: shine 2s infinite linear;
+        }
+        .bg-hp { background: linear-gradient(90deg, #7f1d1d, var(--accent-red)); box-shadow: 0 0 10px rgba(255,42,42,0.3); }
+        .bg-mp { background: linear-gradient(90deg, #1e3a8a, var(--accent-cyan)); box-shadow: 0 0 10px rgba(0,240,255,0.3); }
+        .bg-sp { background: linear-gradient(90deg, #064e3b, var(--accent-green)); box-shadow: 0 0 10px rgba(0,255,102,0.3); }
+        .bg-xp { background: linear-gradient(90deg, #5b21b6, var(--accent-purple)); }
+
+        @keyframes shine { 0% { transform: translateX(-100%); } 100% { transform: translateX(100%); } }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: var(--bg-color); border-left: 1px solid var(--panel-border); }
+        ::-webkit-scrollbar-thumb { background: #334155; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--accent-cyan); }
+
+        /* Tooltips */
+        .item-slot { position: relative; }
+        .item-tooltip {
+            visibility: hidden;
+            background: rgba(5, 9, 20, 0.95);
+            border: 1px solid var(--accent-cyan);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.8), inset 0 0 10px rgba(0,240,255,0.1);
+            position: absolute;
+            z-index: 50;
+            bottom: 120%;
+            left: 50%;
+            transform: translateX(-50%) translateY(10px);
+            opacity: 0;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            width: max-content;
+            max-width: 250px;
+            pointer-events: none;
+            padding: 12px;
+        }
+        .item-slot:hover .item-tooltip {
+            visibility: visible;
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        /* Animations */
+        @keyframes pulse-border {
+            0%, 100% { border-color: #1e293b; }
+            50% { border-color: rgba(0, 240, 255, 0.5); }
+        }
+        .animate-border { animation: pulse-border 4s infinite; }
+        
+        .cursor-blink { animation: blink 1s step-end infinite; }
+        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+
+        /* Rarity Colors */
+        .text-epic { color: var(--accent-purple); text-shadow: 0 0 5px rgba(176,38,255,0.4); }
+        .text-legendary { color: var(--accent-gold); text-shadow: 0 0 5px rgba(255,183,0,0.4); }
+        .text-rare { color: #3b82f6; }
+        .text-uncommon { color: var(--accent-green); }
+
+
+        /* ====================================================================
+           BOOTSTRAP 5 OVERRIDES & TAILWIND UTILITY REPLACEMENTS
+           ==================================================================== */
+        
+        /* Typography */
+        .text-sm { font-size: 0.875rem !important; }
+        .text-xs { font-size: 0.75rem !important; }
+        .text-xxs { font-size: 10px !important; }
+        .text-2xs { font-size: 9px !important; }
+        .tracking-wide { letter-spacing: 0.025em; }
+        .tracking-wider { letter-spacing: 0.05em; }
+        .tracking-widest { letter-spacing: 0.1em; }
+        .tracking-widest-2 { letter-spacing: 0.2em; }
+        .leading-relaxed { line-height: 1.625; }
+        
+        /* Sizing */
+        .w-2 { width: 0.5rem !important; }
+        .h-2 { height: 0.5rem !important; }
+        .h-3 { height: 0.75rem !important; }
+        .custom-w-6 { width: 1.5rem !important; }
+        .w-10 { width: 2.5rem !important; }
+        .h-10 { height: 2.5rem !important; }
+        .w-16 { width: 4rem !important; }
+        .h-16 { height: 4rem !important; }
+        
+        .custom-avatar { width: 8rem; height: 8rem; }
+        @media (min-width: 768px) { .custom-avatar { width: 12rem; height: 12rem; } }
+        
+        .custom-console-height { height: 8rem; }
+        @media (min-width: 768px) { .custom-console-height { height: 10rem; } }
+
+        /* Colors */
+        .text-cyan-200 { color: #a5f3fc !important; }
+        .text-cyan-300 { color: #67e8f9 !important; }
+        .text-cyan-400 { color: #22d3ee !important; }
+        .text-slate-300 { color: #cbd5e1 !important; }
+        .text-slate-400 { color: #94a3b8 !important; }
+        .text-slate-500 { color: #64748b !important; }
+        .text-slate-600 { color: #475569 !important; }
+        .text-red-300 { color: #fca5a5 !important; }
+        .text-red-400 { color: #f87171 !important; }
+        .text-red-500 { color: #ef4444 !important; }
+        .text-green-300 { color: #86efac !important; }
+        .text-green-400 { color: #4ade80 !important; }
+        .text-blue-300 { color: #93c5fd !important; }
+        .text-blue-400 { color: #60a5fa !important; }
+        .text-yellow-300 { color: #fde047 !important; }
+        .text-yellow-400 { color: #facc15 !important; }
+        .text-purple-300 { color: #d8b4fe !important; }
+        .text-purple-400 { color: #c084fc !important; }
+        .text-cyan-700 { color: #0e7490 !important; }
+
+        /* Backgrounds */
+        .bg-slate-800 { background-color: #1e293b !important; }
+        .bg-slate-900 { background-color: #0f172a !important; }
+        .bg-cyan-900 { background-color: #164e63 !important; }
+        .bg-cyan-700 { background-color: #0e7490 !important; }
+        .bg-black-60 { background-color: rgba(0,0,0,0.6) !important; }
+        .bg-slate-900-30 { background-color: rgba(15, 23, 42, 0.3) !important; }
+        .bg-slate-900-50 { background-color: rgba(15, 23, 42, 0.5) !important; }
+        .bg-slate-900-60 { background-color: rgba(15, 23, 42, 0.6) !important; }
+        .bg-slate-800-50 { background-color: rgba(30, 41, 59, 0.5) !important; }
+        .bg-cyan-900-30 { background-color: rgba(22, 78, 99, 0.3) !important; }
+        .bg-cyan-900-50 { background-color: rgba(22, 78, 99, 0.5) !important; }
+        .bg-purple-900-20 { background-color: rgba(88, 28, 135, 0.2) !important; }
+        .bg-purple-900-30 { background-color: rgba(88, 28, 135, 0.3) !important; }
+        .bg-red-900-30 { background-color: rgba(127, 29, 29, 0.3) !important; }
+        
+        /* Borders */
+        .border-slate-700 { border-color: #334155 !important; }
+        .border-slate-800 { border-color: #1e293b !important; }
+        .border-cyan-800 { border-color: #155e75 !important; }
+        .border-cyan-900-50 { border-color: rgba(22, 78, 99, 0.5) !important; }
+        .border-purple-500 { border-color: #a855f7 !important; }
+        .border-purple-800-50 { border-color: rgba(107, 33, 168, 0.5) !important; }
+        .border-purple-900-50 { border-color: rgba(88, 28, 135, 0.5) !important; }
+        .border-blue-500 { border-color: #3b82f6 !important; }
+        .border-blue-900-50 { border-color: rgba(30, 58, 138, 0.5) !important; }
+        .border-yellow-500 { border-color: #eab308 !important; }
+        .border-yellow-900-50 { border-color: rgba(113, 63, 18, 0.5) !important; }
+        .border-red-800-50 { border-color: rgba(153, 27, 27, 0.5) !important; }
+        .border-dashed { border-style: dashed !important; }
+
+        @media (min-width: 768px) {
+            .border-md-start { border-left: 1px solid #334155 !important; }
+            .border-md-top-0 { border-top: 0 !important; }
+        }
+
+        /* Interactive & Transitions */
+        .cursor-help { cursor: help; }
+        .cursor-default { cursor: default; }
+        .transition-colors { transition: background-color 0.15s ease-in-out, color 0.15s ease-in-out, border-color 0.15s ease-in-out; }
+        .transition-all { transition: all 0.15s ease-in-out; }
+        
+        .hover-bg-slate-800:hover { background-color: #1e293b !important; }
+        .hover-bg-slate-800-50:hover { background-color: rgba(30, 41, 59, 0.5) !important; }
+        .hover-bg-cyan-900:hover { background-color: #164e63 !important; }
+        .hover-border-cyan-900-50:hover { border-color: rgba(22, 78, 99, 0.5) !important; }
+        
+        /* Group hover simulation */
+        .custom-group:hover .group-hover-text-red-300 { color: #fca5a5 !important; }
+        .custom-group:hover .group-hover-text-cyan-300 { color: #67e8f9 !important; }
+        .custom-group:hover .group-hover-text-green-300 { color: #86efac !important; }
+        .custom-group:hover .group-hover-text-white { color: #ffffff !important; }
+
+        /* Layouts & Effects */
+        .inset-0 { position: absolute; top: 0; right: 0; bottom: 0; left: 0; }
+        .inset-2 { position: absolute; top: 0.5rem; right: 0.5rem; bottom: 0.5rem; left: 0.5rem; }
+        .inset-4 { position: absolute; top: 1rem; right: 1rem; bottom: 1rem; left: 1rem; }
+        
+        .shadow-cyan-glow { box-shadow: 0 0 30px rgba(0, 240, 255, 0.05); }
+        .shadow-purple-item { box-shadow: 0 0 10px rgba(176, 38, 255, 0.2); }
+        .shadow-gold-item { box-shadow: 0 0 10px rgba(255, 183, 0, 0.2); }
+        
+        @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+        .animate-spin-60s { animation: spin 60s linear infinite; }
+        
+        @keyframes custom-pulse { 0%, 100% { opacity: 1; } 50% { opacity: .5; } }
+        .animate-pulse { animation: custom-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
+        
+        @keyframes shine-bar { 0% { transform: translateX(-100%); } 100% { transform: translateX(100%); } }
+        .animate-shine-bar { animation: shine-bar 3s infinite; }
+
+        /* General selection override */
+        ::selection { background: #164e63; color: #cffafe; }
+    </style>
 </head>
-   <body>
+<body class="p-2 p-sm-3 p-md-4 text-sm position-relative">
+    
+    <div class="container-xl position-relative z-index-10 d-flex flex-column gap-3 gap-md-4 mt-2">
+        
+        <!-- Header -->
+        <header class="panel p-3 p-md-4 d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center gap-3 animate-border">
+            <div class="panel-inner"></div>
+            <div class="flex-grow-1">
+                <div class="d-flex align-items-center gap-3 mb-1">
+                    <h1 class="fs-1 text-white sys-font text-uppercase glow-text-cyan tracking-wider mb-0">Joe Dougherty</h1>
+                    <span class="px-2 py-1 border border-cyan-800 bg-cyan-900-30 text-cyan-400 text-xs rounded-1 sys-font">ID: github.com/KuJoe</span>
+                </div>
+                <div class="d-flex flex-wrap gap-3 text-xs text-slate-400 fw-semibold tracking-wide">
+                    <p class="mb-0">ROLE: <span class="text-white">Full-Stack Engineer</span></p>
+                    <p class="mb-0">SPECIALTY: <span class="text-epic">Web Architecture</span></p>
+                    <p class="mb-0">LOCATION: <span class="text-slate-300">Remote / Florida</span></p>
+                </div>
+            </div>
+            
+            <div class="text-md-end border-top border-md-top-0 border-md-start border-slate-700 pt-3 pt-md-0 ps-md-4 w-100 d-flex flex-row flex-md-column justify-content-between align-items-center align-items-md-end" style="max-width: 100%; width: auto;">
+                <div class="sys-font text-slate-500 fs-4">EXP <span class="fs-1 text-white glow-text-cyan ms-1">>21</span> YRS</div>
+                <div class="text-xs text-slate-500 mt-1 text-uppercase tracking-widest d-flex align-items-center gap-2">
+                    <div class="w-2 h-2 rounded-circle bg-success animate-pulse"></div>
+                    Status: Open to Work
+                </div>
+            </div>
+        </header>
 
-<!-- Wrapper --><div id="wrapper">
-	<!-- Vcard --><div id="vcard">
-		<div class="clearpx"></div>
+        <!-- Main Layout -->
+        <div class="row g-3 g-md-4">
+            
+            <!-- Left Column (Vitals & Stats) -->
+            <div class="col-12 col-lg-3 d-flex flex-column gap-3 gap-md-4">
+                
+                <!-- Core Competencies Panel -->
+                <div class="panel p-3 p-md-4">
+                    <div class="panel-inner"></div>
+                    <div class="d-flex justify-content-between align-items-end border-bottom border-slate-700 pb-2 mb-3">
+                        <h2 class="sys-font fs-3 text-cyan-400 text-uppercase tracking-widest mb-0">Core Stack</h2>
+                        <span class="text-xxs text-slate-600">SYS.PROFICIENCY</span>
+                    </div>
+                    
+                    <div class="d-flex flex-column gap-3">
+                        <!-- Frontend -->
+                        <div class="custom-group">
+                            <div class="d-flex justify-content-between text-xs mb-1 fw-bold">
+                                <span class="text-red-400 group-hover-text-red-300 transition-colors">FRONTEND [PHP/HTML/CSS/JS]</span>
+                                <span class="text-slate-300">Master</span>
+                            </div>
+                            <div class="bar-bg h-3 rounded-1 w-100">
+                                <div class="bar-fill bg-hp" style="width: 95%"></div>
+                            </div>
+                            <div class="text-xxs text-slate-500 mt-1 text-end">Focus: UI/UX & State Mgmt</div>
+                        </div>
+                        
+                        <!-- Backend -->
+                        <div class="custom-group">
+                            <div class="d-flex justify-content-between text-xs mb-1 fw-bold">
+                                <span class="text-cyan-400 group-hover-text-cyan-300 transition-colors">BACKEND [NodeJS/Python/PHP]</span>
+                                <span class="text-slate-300">Advanced</span>
+                            </div>
+                            <div class="bar-bg h-3 rounded-1 w-100">
+                                <div class="bar-fill bg-mp" style="width: 86%"></div>
+                            </div>
+                            <div class="text-xxs text-slate-500 mt-1 text-end">Focus: API Design & Scalability</div>
+                        </div>
 
+                        <!-- Database -->
+                        <div class="custom-group">
+                            <div class="d-flex justify-content-between text-xs mb-1 fw-bold">
+                                <span class="text-green-400 group-hover-text-green-300 transition-colors">Virtualization [VMware/LinuxKVM]</span>
+                                <span class="text-slate-300">Advanced</span>
+                            </div>
+                            <div class="bar-bg h-3 rounded-1 w-100">
+                                <div class="bar-fill bg-sp" style="width: 78%"></div>
+                            </div>
+                        </div>
+                        
+                        <!-- XP -->
+                        <div class="pt-2 border-top border-slate-800">
+                            <div class="d-flex justify-content-between text-xxs mb-1">
+                                <span class="text-purple-400 text-uppercase">Caffeine Level</span>
+                                <span class="text-slate-400">84.2%</span>
+                            </div>
+                            <div class="bar-bg rounded-1 w-100" style="height: 0.375rem;">
+                                <div class="bar-fill bg-xp" style="width: 84.2%"></div>
+                            </div>
+                            <div class="text-xxs text-slate-600 mt-1 text-center">Ready for next sprint</div>
+                        </div>
+                    </div>
+                </div>
 
-<!-- Header -->
-   <div id="header">
-   	<div id="logo"></div>
-		<ul id="menu">
-			<li class="active"><a href="#home">Home</a></li>
-			<li><a href="#skills">Skills</a></li>
-			<li><a href="#networks">Sites</a></li>
-		</ul>
-	</div><!-- End Header -->
+                <!-- Attributes Panel -->
+                <div class="panel p-3 p-md-4 flex-grow-1">
+                    <div class="panel-inner"></div>
+                    <h2 class="sys-font fs-3 text-cyan-400 text-uppercase tracking-widest border-bottom border-slate-700 pb-2 mb-3">Skill Matrix</h2>
+                    
+                    <div class="d-flex flex-column gap-1">
+                        <!-- Stat rows -->
+                        <div class="d-flex justify-content-between align-items-center py-1 px-2 hover-bg-slate-800-50 rounded transition-colors custom-group cursor-default">
+                            <span class="text-slate-400 group-hover-text-white transition-colors">Focus</span>
+                            <div class="d-flex align-items-center gap-2">
+                                <span class="text-white fw-bold custom-w-6 text-end">98</span>
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center py-1 px-2 hover-bg-slate-800-50 rounded transition-colors custom-group cursor-default">
+                            <span class="text-epic transition-colors" style="color: var(--accent-purple);">PHP / HTML5 / CSS3</span>
+                            <div class="d-flex align-items-center gap-2">
+                                <span class="text-white fw-bold custom-w-6 text-end glow-text-cyan">95</span>
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center py-1 px-2 hover-bg-slate-800-50 rounded transition-colors custom-group cursor-default">
+                            <span class="text-slate-400 group-hover-text-white transition-colors">JavaScript</span>
+                            <div class="d-flex align-items-center gap-2">
+                                <span class="text-white fw-bold custom-w-6 text-end">75</span>
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center py-1 px-2 hover-bg-slate-800-50 rounded transition-colors custom-group cursor-default">
+                            <span class="text-slate-400 group-hover-text-white transition-colors">Powershell / bash</span>
+                            <div class="d-flex align-items-center gap-2">
+                                <span class="text-white fw-bold custom-w-6 text-end">82</span>
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center py-1 px-2 hover-bg-slate-800-50 rounded transition-colors custom-group cursor-default">
+                            <span class="text-slate-400 group-hover-text-white transition-colors">SQL / NoSQL</span>
+                            <div class="d-flex align-items-center gap-2">
+                                <span class="text-white fw-bold custom-w-6 text-end">90</span>
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center py-1 px-2 hover-bg-slate-800-50 rounded transition-colors custom-group cursor-default">
+                            <span class="text-slate-400 group-hover-text-white transition-colors">Terraform</span>
+                            <div class="d-flex align-items-center gap-2">
+                                <span class="text-white fw-bold custom-w-6 text-end">72</span>
+                            </div>
+                        </div>
+                    </div>
 
-	<hr/>
+                    <div class="mt-3 pt-3 border-top border-slate-700 d-flex justify-content-between align-items-center text-xs">
+                        <span class="text-slate-500">Learning Next:</span>
+                        <span class="text-cyan-400 fw-bold animate-pulse">Kubernetes</span>
+                    </div>
+                </div>
+            </div>
 
-		<!-- Content --><div id="content">
+            <!-- Middle Column (Portrait & Defenses) -->
+            <div class="col-12 col-lg-4 d-flex flex-column gap-3 gap-md-4">
+                
+                <!-- Portrait / Status Frame -->
+                <div class="panel p-1 flex-grow-1 d-flex flex-column" style="min-height: 300px;">
+                    <div class="panel-inner"></div>
+                    <div class="w-100 h-100 border border-slate-800 position-relative overflow-hidden d-flex flex-column align-items-center justify-content-center p-3" style="background-color: #02040a;">
+                        
+                        <!-- Grid overlay -->
+                        <div class="inset-0" style="background: linear-gradient(rgba(0,240,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(0,240,255,0.03) 1px, transparent 1px); background-size: 20px 20px;"></div>
+                        
+                        <!-- Mockup Silhouette/Data block -->
+                        <div class="position-relative z-index-10 d-flex flex-column align-items-center">
+                            <div class="custom-avatar border border-cyan-900-50 rounded-circle d-flex align-items-center justify-content-center position-relative mb-3 shadow-cyan-glow">
+                                <!-- Concentric rings -->
+                                <div class="inset-2 border border-dashed border-cyan-900-50 rounded-circle animate-spin-60s"></div>
+                                <div class="inset-4 border border-slate-700 rounded-circle"></div>
+                                
+                                <img src="https://jmd.cc/joe.png" alt="Joe Dougherty" class="rounded-circle" style="width: 8rem; height: 8rem;" />
+                            </div>
+                            
+                            <div class="bg-black-60 border border-slate-800 px-3 py-2 rounded text-center" style="backdrop-filter: blur(4px);">
+                                <p class="text-xs text-green-400 text-uppercase tracking-widest-2 mb-1 animate-pulse">Identity Verified</p>
+                                <p class="text-xxs text-slate-500 font-monospace mb-0">Synchronizing Git commits...</p>
+                                <div class="w-100 bg-slate-900 mt-2 rounded overflow-hidden" style="height: 0.25rem;">
+                                    <div class="h-100 bg-cyan-700 w-100 animate-shine-bar"></div>
+                                </div>
+                            </div>
+                        </div>
 
-<!-- Scroller -->
-   <div id="scroller">
-	<!-- Menu Home -->
-	<div id="menu_home" class="contentitem">
-		<div class="main">
-			<div class="pagetitle">Joe Dougherty - Welcome</div>
-   <h1>Hi! I'm Joe Dougherty</h1>
-	<p><img src="joe.png" width="80" height="80" alt="" />Welcome to my website. This is just a small little site to make my mark on my small corner of the internet. Here's a brief glimpse into my knowledge and potential.</p>
-	<p>I've got an Associates degree in Computer Network Systems in 2011 and I started my online services company, Secure Dragon, in 2010. My current day job is as a System Administrator managing thousands of servers and keeping them healthy across multiple data centers. I have an amazing wife of over 10 years, an active little girl, and two (thankfully) lazy dogs. I was born and raised in Florida, relocated to Colorado in 2013, then returned to Florida in 2015.</p>
-			</div>
+                        <!-- Corner data points -->
+                        <div class="position-absolute top-0 start-0 m-2 text-2xs text-slate-600 font-monospace">TIMEZONE: EST<br>LANG: EN</div>
+                        <div class="position-absolute bottom-0 end-0 m-2 text-2xs text-slate-600 font-monospace text-end">UPTIME: 99.9%<br>COMMITS: 400+</div>
+                    </div>
+                </div>
 
-	<div class="sidebar">
-		<h2>My skills/experience:</h2>
-			<ul>
-				<li>Linux Administration</li>
-				<li>Windows Administration</li>
-				<li>Server Management</li>
-				<li>Website Hosting</li>
-				<li>Virtual Machines</li>
-				<li>Scripting</li>
-			</ul>
-	</div>
-	</div><!-- End Menu Home -->
+                <!-- Familiar Tools -->
+                <div class="panel p-3 p-md-4">
+                    <div class="panel-inner"></div>
+                    <h2 class="sys-font fs-4 text-cyan-400 text-uppercase tracking-widest border-bottom border-slate-700 pb-2 mb-3">Tools & Environments</h2>
+                    
+                    <div class="row g-2 text-xs">
+                        <div class="col-6">
+                            <div class="d-flex justify-content-between align-items-center p-1 px-2 bg-slate-900-50 rounded">
+                                <span class="text-slate-400">OS</span>
+                                <span class="text-white">Fedora KDE (Linux)</span>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="d-flex justify-content-between align-items-center p-1 px-2 bg-slate-900-50 rounded">
+                                <span class="text-slate-400">Editor</span>
+                                <span class="text-white">VS Code</span>
+                            </div>
+                        </div>
+                        
+                        <div class="col-12 py-1">
+                            <div class="bg-slate-800" style="height: 1px;"></div>
+                        </div>
+                        
+                        <div class="col-6">
+                            <div class="d-flex justify-content-between align-items-center p-1">
+                                <span class="text-red-300">GitHub</span>
+                                <span class="text-slate-300">Daily</span>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="d-flex justify-content-between align-items-center p-1">
+                                <span class="text-blue-300">Servers</span>
+                                <span class="text-slate-300">Expert</span>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="d-flex justify-content-between align-items-center p-1">
+                                <span class="text-yellow-300">Cloud</span>
+                                <span class="text-slate-300">Proficient</span>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="d-flex justify-content-between align-items-center p-1">
+                                <span class="text-green-300">Containers</span>
+                                <span class="text-slate-300">Proficient</span>
+                            </div>
+                        </div>
+                        
+                        <div class="col-12 mt-2">
+                            <div class="d-flex justify-content-between align-items-center p-2 bg-purple-900-20 border border-purple-900-50 rounded">
+                                <span class="text-purple-400 fw-bold tracking-wide">Scripting</span>
+                                <span class="text-epic glow-text-cyan fw-bold">VETERAN</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-	<div id="menu_skills" class="contentitem">
-			<div class="pagetitle">Joe Dougherty - Skills</div>
-				<div class="main">
-		<h1>My skills</h1>
-			<ul class="skills">
-				<li><span class="topic">Linux/Windows</span><span class="stars"><img src="images/vcard/star.png" alt="star" width="16" height="16" /><img src="images/vcard/star.png" alt="star" width="16" height="16" /><img src="images/vcard/star.png" alt="star" width="16" height="16" /><img src="images/vcard/star.png" alt="star" width="16" height="16" /><img src="images/vcard/star.png" alt="star" width="16" height="16" /></span>Workstations / Servers</li>
-				<li><span class="topic">Server Management</span><span class="stars"><img src="images/vcard/star.png" alt="star" width="16" height="16" /><img src="images/vcard/star.png" alt="star" width="16" height="16" /><img src="images/vcard/star.png" alt="star" width="16" height="16" /><img src="images/vcard/star.png" alt="star" width="16" height="16" /><img src="images/vcard/stargrey.png" alt="star" width="16" height="16" /></span>Administration / Support</li>
-				<li><span class="topic">Website Hosting</span><span class="stars"><img src="images/vcard/star.png" alt="star" width="16" height="16" /><img src="images/vcard/star.png" alt="star" width="16" height="16" /><img src="images/vcard/star.png" alt="star" width="16" height="16" /><img src="images/vcard/star.png" alt="star" width="16" height="16" /><img src="images/vcard/stargrey.png" alt="star" width="16" height="16" /></span>Administration / Support</li>
-				<li><span class="topic">Virtual Machines</span><span class="stars"><img src="images/vcard/star.png" alt="star" width="16" height="16" /><img src="images/vcard/star.png" alt="star" width="16" height="16" /><img src="images/vcard/star.png" alt="star" width="16" height="16" /><img src="images/vcard/star.png" alt="star" width="16" height="16" /><img src="images/vcard/stargrey.png" alt="star" width="16" height="16" /></span>Administration / Support</li>
-				<li><span class="topic">Scripting</span><span class="stars"><img src="images/vcard/star.png" alt="star" width="16" height="16" /><img src="images/vcard/star.png" alt="star" width="16" height="16" /><img src="images/vcard/stargrey.png" alt="star" width="16" height="16" /><img src="images/vcard/stargrey.png" alt="star" width="16" height="16" /><img src="images/vcard/stargrey.png" alt="star" width="16" height="16" /></span>Bash / PHP / Powershell</li>
-			</ul>
-				</div>
+            <!-- Right Column (Equipment & Skills) -->
+            <div class="col-12 col-lg-5 d-flex flex-column gap-3 gap-md-4">
+                
+                <!-- Portfolio Projects -->
+                <div class="panel p-3 p-md-4">
+                    <div class="panel-inner"></div>
+                    <div class="d-flex justify-content-between align-items-end border-bottom border-slate-700 pb-2 mb-3">
+                        <h2 class="sys-font fs-3 text-cyan-400 text-uppercase tracking-widest mb-0">Key Projects</h2>
+                        <span class="text-xxs text-slate-600">PORTFOLIO_DB</span>
+                    </div>
 
-		<div class="sidebar">
+                    <div class="row g-2">
+                        <!-- Project 1 -->
+                        <div class="col-12 col-sm-6">
+                            <a href="https://kontrolvm.com" target="_blank" rel="noopener noreferrer" aria-label="Open KontrolVM" class="item-slot bg-slate-900-60 border border-purple-900-50 p-2 rounded d-flex align-items-center gap-2 cursor-help hover-bg-slate-800 transition-colors text-decoration-none">
+                                <div class="w-10 h-10 bg-black border border-purple-500 rounded-1 d-flex align-items-center justify-content-center text-purple-400 sys-font fs-5 shadow-purple-item flex-shrink-0">P1</div>
+                                <div class="overflow-hidden">
+                                    <div class="text-xxs text-slate-500 text-uppercase">Full-Stack App</div>
+                                    <div class="text-sm text-epic text-truncate fw-bold">VM Control Panel</div>
+                                </div>
+                                <!-- Tooltip -->
+                                <div class="item-tooltip text-start">
+                                    <p class="text-epic fw-bold border-bottom border-purple-900-50 pb-1 mb-2 fs-6">KontrolVM</p>
+                                    <p class="text-xs text-slate-300 mb-1">Type: Open Source Virtualization Platform</p>
+                                    <ul class="text-xxs text-cyan-200 ms-3 ps-0 mb-0 d-flex flex-column gap-1">
+                                        <li>Built a free self-hosted control panel for Linux KVM clusters, nodes, and guest VMs.</li>
+                                        <li>Implemented VM lifecycle actions, load balancing, MFA, logging/alerts, and automated backups.</li>
+                                    </ul>
+                                    <p class="text-xxs text-slate-500 mt-2 fst-italic mb-0">"Simple, secure virtualization management for homelabs and private deployments."</p>
+                                </div>
+                            </a>
+                        </div>
 
-		<h2>My Experience</h2>
-			<ul>	
-			<li class="li-moreinfo">
-				<p class="nopadding">I have over 15 years of experience working in a corporate IT environment and in the web hosting industry.</p>
-				<p>I am currently employeed full time as a Cloud Engineer while co-owning a successful online service company.</p>
-			</li>
-			</ul>
-		</div>
-	</div>
+                        <!-- Project 2 -->
+                        <div class="col-12 col-sm-6">
+                            <a href="https://alttexty.org" target="_blank" rel="noopener noreferrer" aria-label="Open AltTexty" class="item-slot bg-slate-900-60 border border-blue-900-50 p-2 rounded d-flex align-items-center gap-2 cursor-help hover-bg-slate-800 transition-colors text-decoration-none">
+                                <div class="w-10 h-10 bg-black border border-blue-500 rounded-1 d-flex align-items-center justify-content-center text-blue-400 sys-font fs-5 flex-shrink-0">P2</div>
+                                <div class="overflow-hidden">
+                                    <div class="text-xxs text-slate-500 text-uppercase">Web Utility</div>
+                                    <div class="text-sm text-rare text-truncate fw-bold">AltTexty</div>
+                                </div>
+                                <div class="item-tooltip text-start">
+                                    <p class="text-rare fw-bold border-bottom border-blue-900-50 pb-1 mb-2 fs-6">AltTexty</p>
+                                    <p class="text-xs text-slate-300 mb-1">Type: Accessibility Tool</p>
+                                    <ul class="text-xxs text-cyan-200 ms-3 ps-0 mb-0 d-flex flex-column gap-1">
+                                        <li>Generates descriptive alt text from uploaded images to improve web accessibility.</li>
+                                        <li>Processed over 27,000 images with one-click copy and share workflow for creators.</li>
+                                    </ul>
+									<p class="text-xxs text-slate-500 mt-2 fst-italic text-red-400 mb-0">"A free and easy to use alt text generator."</p>
+                                </div>
+                            </a>
+                        </div>
 
-		<!-- Menu Networks --><div id="menu_networks" class="contentitem">
-			<div class="pagetitle">Joe Dougherty - Sites</div>
-		<h1>Here's a list of my websites...</h1>
+                        <!-- Project 3 -->
+                        <div class="col-12 col-sm-6">
+                            <a href="https://xilt.net" target="_blank" rel="noopener noreferrer" aria-label="Open xilt.net" class="item-slot bg-slate-900-60 border border-yellow-900-50 p-2 rounded d-flex align-items-center gap-2 cursor-help hover-bg-slate-800 transition-colors text-decoration-none">
+                                <div class="w-10 h-10 bg-black border border-yellow-500 rounded-1 d-flex align-items-center justify-content-center text-yellow-400 sys-font fs-5 shadow-gold-item flex-shrink-0">P3</div>
+                                <div class="overflow-hidden">
+                                    <div class="text-xxs text-slate-500 text-uppercase">Web Platform</div>
+                                    <div class="text-sm text-legendary text-truncate fw-bold">xilt.net</div>
+                                </div>
+                                <div class="item-tooltip text-start">
+                                    <p class="text-legendary fw-bold border-bottom border-yellow-900-50 pb-1 mb-2 fs-6 glow-text-gold">xilt.net Image Hosting</p>
+                                    <p class="text-xs text-slate-300 mb-1">Type: Free Public Image Hosting Service</p>
+                                    <ul class="text-xxs text-cyan-200 ms-3 ps-0 mb-0 d-flex flex-column gap-1">
+                                        <li>Built on object storage + global CDN for fast image delivery worldwide.</li>
+                                        <li>Supports PNG/JPG/JPEG/GIF up to 20MB with smart compression over 8MB; 255 images hosted.</li>
+                                    </ul>
+                                    <p class="text-xxs text-slate-500 mt-2 fst-italic text-red-400 mb-0">"Simple, free image hosting with cloud-scale reliability."</p>
+                                </div>
+                            </a>
+                        </div>
 
-			<ul class="networks">
-				<li><a href="https://afreecloud.com" target="_blank"><span class="background"></span><span class="content"><img src="images/networks/cloud.png" alt="afreecloud"/><span class="title"><span class="sname">AFreeCloud</span><span class="surl"></span></span></span></a></li>
-				<li><a href="https://securedragon.net" target="_blank"><span class="background"></span><span class="content"><img src="images/networks/shield.png" alt="securedragon"/><span class="title"><span class="sname">Secure Dragon LLC.</span><span class="surl"></span></span></span></a></li>
-				<li><a href="http://rand.pw" target="_blank"><span class="background"></span><span class="content"><img src="images/networks/randpw.png" alt="randpw"/><span class="title"><span class="sname">rand(PW)</span><span class="surl"></span></span></span></a></li>
-				<li><a href="https://github.com/KuJoe" target="_blank"><span class="background"></span><span class="content"><img src="images/networks/github.png" alt="github"/><span class="title"><span class="sname">GitHub</span><span class="surl"></span></span></span></a></li>
-			</ul>
-			</div><!-- End Menu Networks -->
+                        <!-- Project 4 (Empty/Learning) -->
+                        <div class="col-12 col-sm-6">
+                            <div class="bg-slate-900-30 border border-slate-800 border-dashed p-2 rounded d-flex align-items-center gap-2 opacity-50">
+                                <div class="w-10 h-10 bg-black-60 border border-slate-700 rounded-1 d-flex align-items-center justify-content-center text-slate-600 sys-font fs-5 flex-shrink-0">P4</div>
+                                <div class="overflow-hidden">
+                                    <div class="text-xxs text-slate-600 text-uppercase">In Development</div>
+                                    <div class="text-sm text-slate-500 fst-italic">Virtual Pet Hardware Solution</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-	</div><!-- End Scroller -->
-	</div><!-- End Content -->
-	</div><!-- End Vcard -->
-	</div><!-- End Wrapper -->
+                <!-- Work Experience -->
+                <div class="panel p-3 p-md-4 flex-grow-1 d-flex flex-column">
+                    <div class="panel-inner"></div>
+                    <div class="d-flex justify-content-between align-items-center border-bottom border-slate-700 pb-2 mb-3">
+                        <h2 class="sys-font fs-3 text-cyan-400 text-uppercase tracking-widest mb-0">Work Experience</h2>
+                        <div class="d-flex gap-2">
+                            <button class="btn btn-sm text-xxs bg-slate-800 hover-bg-cyan-900 text-slate-300 px-2 py-1 rounded transition-colors border border-slate-700 p-0 m-0 shadow-none">Chronological</button>
+                        </div>
+                    </div>
 
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+                    <div class="d-flex flex-column gap-2 overflow-auto pe-2 custom-scrollbar flex-grow-1" style="max-height: 300px;">
+                        
+                        <!-- Role 1 -->
+                        <div class="custom-group border border-slate-800 bg-slate-900-30 p-3 rounded hover-border-cyan-900-50 hover-bg-slate-800-50 transition-all">
+                            <div class="d-flex justify-content-between align-items-start mb-1">
+                                <div class="d-flex align-items-center gap-2">
+									<div class="w-2 h-2 bg-primary rounded-circle" style="box-shadow: 0 0 5px #00f0ff;"></div>
+                                    <h3 class="text-white fw-bold group-hover-text-cyan-300 transition-colors fs-6 mb-0">Cloud Engineer</h3>
+                                </div>
+                                <div class="text-end">
+                                    <span class="text-xs text-blue-400 d-block">National Lab of the Rockies</span>
+                                    <span class="text-xxs text-slate-500">2022 - Present</span>
+                                </div>
+                            </div>
+                            <p class="text-xs text-slate-400 leading-relaxed ps-3 border-start border-slate-700 mt-2 mb-0">Part of a 3-person team responsible for cloud infrastructure and deployment. Focused on NIST 800-53 compliance and implementing secure cloud solutions.</p>
+                            <div class="mt-2 ps-3 d-flex gap-2">
+                                <span class="text-2xs px-2 py-1 bg-slate-800 text-slate-400 rounded">Leadership</span>
+                                <span class="text-2xs px-2 py-1 bg-purple-900-30 text-purple-300 rounded border border-purple-800-50">Architecture</span>
+                            </div>
+                        </div>
 
-  ga('create', 'UA-5350997-14', 'jmd.cc');
-  ga('send', 'pageview');
+                        <!-- Role 2 -->
+                        <div class="custom-group border border-slate-800 bg-slate-900-30 p-3 rounded hover-border-cyan-900-50 hover-bg-slate-800-50 transition-all">
+                            <div class="d-flex justify-content-between align-items-start mb-1">
+                                <div class="d-flex align-items-center gap-2">
+									<div class="w-2 h-2 bg-secondary rounded-circle" style="box-shadow: 0 0 5px #00f0ff;"></div>
+                                    <h3 class="text-white fw-bold group-hover-text-cyan-300 transition-colors fs-6 mb-0">Tech Infrastructure Administrator</h3>
+                                </div>
+                                <div class="text-end">
+                                    <span class="text-xs text-blue-400 d-block">Raymond James and Associates</span>
+                                    <span class="text-xxs text-slate-500">2005 - 2022</span>
+                                </div>
+                            </div>
+                            <p class="text-xs text-slate-400 leading-relaxed ps-3 border-start border-slate-700 mt-2 mb-0">Managed in excess of 12,000 Linux and Windows VMs, ensuring high availability and security compliance. Worked on PCI compliant systems and implemented best practices for infrastructure management.</p>
+                            <div class="mt-2 ps-3 d-flex gap-2">
+                                <span class="text-2xs px-2 py-1 bg-slate-800 text-slate-400 rounded">Problem Solving</span>
+                                <span class="text-2xs px-2 py-1 bg-cyan-900-30 text-cyan-300 rounded border border-cyan-800">Infrastructure</span>
+                            </div>
+                        </div>
 
-</script>
+                    </div>
+                </div>
+            </div>
+        </div>
 
+        <!-- Terminal / System Log -->
+        <div class="panel p-3 p-md-4 mt-3 font-monospace text-xs text-slate-400 overflow-auto d-flex flex-column position-relative custom-console-height" id="console-wrapper">
+            <div class="panel-inner"></div>
+            <div class="position-absolute top-0 end-0 bg-cyan-900-50 text-cyan-200 px-2 py-1 text-2xs border-bottom border-start border-cyan-800">DEV.CONSOLE</div>
+            
+            <div id="log-content" class="flex-grow-1 d-flex flex-column gap-1 mt-2">
+                <div><span class="text-slate-600">[SYS]</span> Initializing career modules... <span class="text-green-400">OK</span></div>
+                <div><span class="text-slate-600">[SYS]</span> Fetching latest git repositories... <span class="text-green-400">SYNCED</span></div>
+                <div><span class="text-slate-600">[BUILD]</span> Compiling portfolio assets... <span class="text-green-400">SUCCESS</span></div>
+                <div class="text-warning"><span class="text-slate-600">[WARN]</span> Caffeine levels dropping. Suggest initiating coffee.sh protocol.</div>
+            </div>
+            
+            <div class="mt-2 d-flex align-items-center text-cyan-400">
+                <span class="me-2">guest@portfolio:~$</span>
+                <span id="typewriter" class="text-white"></span>
+                <span class="cursor-blink d-inline-block align-middle ms-1" style="width: 0.5rem; height: 0.875rem; background-color: #22d3ee;"></span>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        // Terminal Typewriter Effect
+        const commands = [
+            "npm run start --production",
+            "git pull origin main",
+            "./bugchecker.sh",
+            "docker ps --format \"table {{.Names}}\\t{{.Status}}\"",
+            "kubectl get pods -A",
+            "terraform plan -var-file=prod.tfvars",
+            "ansible-playbook site.yml --check",
+            "tail -n 40 /var/log/app.log",
+            "curl -I https://alttexty.org",
+            "php -v",
+            "git status --short"
+        ];
+        
+        let cmdIndex = 0;
+        let charIndex = 0;
+        const twElement = document.getElementById('typewriter');
+        const logContent = document.getElementById('log-content');
+        const consoleWrapper = document.getElementById('console-wrapper');
+        let isTyping = true;
+
+        function addLogEntry(text, type="cmd") {
+            const div = document.createElement('div');
+            if(type === "cmd") {
+                div.innerHTML = `<span class="text-cyan-700">guest@portfolio:~$</span> <span class="text-white">${text}</span>`;
+            } else {
+                div.innerHTML = `<span class="text-slate-600">[SYS]</span> ${text}`;
+            }
+            logContent.appendChild(div);
+            consoleWrapper.scrollTop = consoleWrapper.scrollHeight;
+        }
+
+        function typeWriter() {
+            if (!isTyping) return;
+            
+            const currentCmd = commands[cmdIndex];
+            
+            if (charIndex < currentCmd.length) {
+                twElement.textContent += currentCmd.charAt(charIndex);
+                charIndex++;
+                let speed = Math.random() * 50 + 30;
+                // Add natural pause for spaces
+                if(currentCmd.charAt(charIndex-1) === ' ') speed += 50;
+                setTimeout(typeWriter, speed);
+            } else {
+                isTyping = false;
+                setTimeout(() => {
+                    addLogEntry(currentCmd, "cmd");
+                    twElement.textContent = "";
+                    charIndex = 0;
+                    
+                    // Simulate system response
+                    setTimeout(() => {
+                        if(currentCmd.includes("npm run")) {
+                            addLogEntry("Server started on port 3000.", "sys");
+                        } else if (currentCmd.includes("git pull")) {
+                            addLogEntry("Already up to date.", "sys");
+                        } else if (currentCmd.includes("bugchecker.sh")) {
+							addLogEntry("Checking for active bugs...", "sys");
+                            addLogEntry("0 critical issues found.", "sys");
+						} else if (currentCmd.includes("docker ps")) {
+							addLogEntry("kontrolvm   Up 5 mins\nalttexty    Up 10 mins\nxiltnet     Up 20 mins", "sys");
+						} else if (currentCmd.includes("kubectl get pods")) {
+							addLogEntry("No pods found.", "sys");
+                        } else if (currentCmd.includes("terraform plan")) {
+							addLogEntry("No changes. Infrastructure is up-to-date.", "sys");
+						} else if (currentCmd.includes("ansible-playbook")) {
+							addLogEntry("Playbook run complete. No changes needed.", "sys");
+						} else if (currentCmd.includes("tail -n 40")) {
+							addLogEntry("[INFO] Application running smoothly.\n[INFO] No errors detected in the last 40 lines.", "sys");
+						} else if (currentCmd.includes("curl -I")) {
+							addLogEntry("HTTP/1.1 200 OK\nContent-Type: text/html; charset=UTF-8\n...", "sys");
+						} else if (currentCmd.includes("php -v")) {
+							addLogEntry("PHP 8.2.5 (cli) (built: May  3 2024 12:34:56) ( NTS )", "sys");
+						} else if (currentCmd.includes("git status")) {
+							addLogEntry("On branch main\nYour branch is up to date with 'origin/main'.\nnothing to commit, working tree clean", "sys");
+						} else {
+							addLogEntry("Command executed successfully.", "sys");
+						}
+                        
+                        cmdIndex = (cmdIndex + 1) % commands.length;
+                        isTyping = true;
+                        setTimeout(typeWriter, 1000);
+                    }, 500);
+
+                }, 800); // Wait before clearing line
+            }
+        }
+
+        // Start typing effect after initial load
+        setTimeout(typeWriter, 1500);
+
+    </script>
 </body>
 </html>
